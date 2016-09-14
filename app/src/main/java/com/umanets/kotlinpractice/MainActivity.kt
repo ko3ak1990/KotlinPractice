@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
 
     var cnt: Int = 0
 
+
     var range = 0.rangeTo(10)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,10 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         val textView = findViewById(R.id.counter_text_view) as TextView
         val button = findViewById(R.id.button) as Button
-        textView.text = savedInstanceState?.getInt("counter").toString()
+        textView.text = savedInstanceState?.getInt("counter")?.toString()
+                ?: resources.getString(R.string.app_name)
         button.setOnClickListener {
             if (++cnt in range) {
-                textView.text = "" + cnt
+                textView.text = "Counter : $cnt"
             } else {
                 textView.text = "Value out of range"
                 cnt = 0
